@@ -1,5 +1,6 @@
+param([string]$OutputDirectory=(Join-Path $PSScriptRoot 'installed'))
 $ErrorActionPreference='Stop'
-$output=Join-Path $PSScriptRoot 'installed'
+$output=[IO.Path]::GetFullPath($OutputDirectory)
 [IO.Directory]::CreateDirectory($output)|Out-Null
 $compiler=Join-Path $env:WINDIR 'Microsoft.NET\Framework64\v4.0.30319\csc.exe'
 $automation=Join-Path $env:WINDIR 'Microsoft.NET\assembly\GAC_MSIL\System.Management.Automation\v4.0_3.0.0.0__31bf3856ad364e35\System.Management.Automation.dll'

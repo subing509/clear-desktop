@@ -4,6 +4,20 @@
 
 当前为实验性本地构建，尚非经过全面兼容性验证的稳定发行版。
 
+## 给朋友：下载后安装
+
+无需 Git、Python 或编译环境。适用于 64 位 Windows，当前主要在 Windows 11 验证。
+
+1. [下载 Windows 安装包](https://github.com/subing509/clear-desktop/releases/download/v0.1.0-preview/ClearDesktop-Setup.exe)。
+2. 双击 `ClearDesktop-Setup.exe`，点击“安装并启动”。
+3. 安装完成后使用底部 Dock；左侧齿轮打开设置，可自行启用登录自启动。
+
+安装到当前用户“文档”下的 `ClearDesktop` 文件夹，自动建立桌面与开始菜单快捷方式，不需要管理员权限。每位用户在自己的电脑上重新识别应用，不携带作者的分类、应用清单或路径。更新前先退出澄桌，再运行新安装包，保留 `data` 中的配置。
+
+安装包尚未进行代码签名，Windows 可能提示“未知发布者”。请只从[本仓库 Release](https://github.com/subing509/clear-desktop/releases/tag/v0.1.0-preview) 下载，并按发布页的 `SHA256SUMS.txt` 核对文件；无法确认来源时不要运行。
+
+也可下载同一发布页的 `ClearDesktop-Portable.zip`，解压到可写的固定目录后运行 `installed/ClearDesktop.exe`。如需移除：先在设置中取消登录自启动并退出，删除桌面、开始菜单快捷方式及安装目录；需要保留配置时先备份 `data`。
+
 ## 功能
 
 - 半透明底部 Dock，原始应用图标、悬停放大与点击反馈。
@@ -26,6 +40,14 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 生成 `installed/ClearDesktop.exe`，双击即可运行。默认只显示 Dock，通过左侧设置图标打开设置。重复启动由互斥锁阻止。
 
 构建不会自动启用开机启动；请在设置 → 通用中勾选“登录 Windows 后自动启动”。设置中的退出按钮关闭 Dock，自启动开关独立控制。
+
+生成可分发的安装包与便携包：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\package.ps1
+```
+
+产物位于 `dist/0.1.0-preview/`。打包使用固定文件清单，并验证嵌入式程序文件，不包含本机配置、日志、截图或第三方图标。
 
 ## 配置与更新
 

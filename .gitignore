@@ -3,6 +3,11 @@
 !README.md
 !LICENSE
 !build.ps1
+!package.ps1
+!installer/
+installer/*
+!installer/Setup.cs
+!installer/app.manifest
 !native-preview/
 native-preview/*
 !native-preview/Start-ClearDesktop.ps1
