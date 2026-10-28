@@ -55,4 +55,3 @@ powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\build.ps1
 ## 许可证
 
 代码使用 [MIT License](LICENSE)。应用名称、第三方图标及 Windows 组件的权利归各自所有者；仓库不分发第三方应用图标。
-

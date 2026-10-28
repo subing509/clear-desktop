@@ -1,0 +1,13 @@
+*
+!.gitignore
+!README.md
+!LICENSE
+!build.ps1
+!native-preview/
+native-preview/*
+!native-preview/Start-ClearDesktop.ps1
+!native-preview/InstalledHost.cs
+!native-preview/NativeIcons.cs
+!native-preview/NativeMotion.cs
+!native-preview/NativeGenie.cs
+!native-preview/WindowRecoveryGuard.cs
