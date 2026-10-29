@@ -1,4 +1,4 @@
-param([string]$Version='0.1.0-preview')
+param([string]$Version='0.1.1-preview')
 $ErrorActionPreference='Stop'
 if($Version -notmatch '^[0-9]+\.[0-9]+\.[0-9]+(?:-[a-zA-Z0-9.]+)?$'){throw 'Invalid version'}
 $release=Join-Path $PSScriptRoot ('dist\'+$Version)

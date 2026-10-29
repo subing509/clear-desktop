@@ -8,6 +8,10 @@
 installer/*
 !installer/Setup.cs
 !installer/app.manifest
+!tests/
+tests/*
+!tests/DockLayerTests.cs
+!tests/Test-DockLayer.ps1
 !native-preview/
 native-preview/*
 !native-preview/Start-ClearDesktop.ps1

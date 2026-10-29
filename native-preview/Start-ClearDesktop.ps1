@@ -16,7 +16,7 @@ if($package){
 }
 $global:cd_category = '全部'
 $global:cd_page = 0
-Add-Type -TypeDefinition ([IO.File]::ReadAllText((Join-Path $global:cd_root 'NativeIcons.cs')))
+Add-Type -TypeDefinition ([IO.File]::ReadAllText((Join-Path $global:cd_root 'NativeIcons.cs'))) -ReferencedAssemblies @([Windows.Window].Assembly.Location,[Windows.Media.Visual].Assembly.Location,[Windows.DependencyObject].Assembly.Location,'System.dll','System.Core.dll')
 Add-Type -TypeDefinition ([IO.File]::ReadAllText((Join-Path $global:cd_root 'NativeMotion.cs'))) -ReferencedAssemblies @([Windows.Window].Assembly.Location,[Windows.Media.Visual].Assembly.Location,[Windows.DependencyObject].Assembly.Location,'System.dll','System.Core.dll','System.Xaml.dll')
 Add-Type -TypeDefinition ([IO.File]::ReadAllText((Join-Path $global:cd_root 'NativeGenie.cs'))) -ReferencedAssemblies @([Windows.Window].Assembly.Location,[Windows.Media.Visual].Assembly.Location,[Windows.DependencyObject].Assembly.Location,'System.dll','System.Core.dll','System.Xaml.dll','System.Drawing.dll')
 $global:cd_categories = [System.Collections.Generic.List[string]]::new()
@@ -320,7 +320,7 @@ foreach ($app in $global:cd_pinned) {
 $work=[Windows.SystemParameters]::WorkArea
 $global:cd_launcher.Width=[Math]::Min(880,$work.Width-50);$global:cd_launcher.Height=[Math]::Min(570,$work.Height-150);$global:cd_launcher.Left=$work.Left+($work.Width-$global:cd_launcher.Width)/2;$global:cd_launcher.Top=[Math]::Min($work.Top+($work.Height-$global:cd_launcher.Height)/2,$work.Bottom-$global:cd_launcher.Height-90)
 $global:cd_dock.Add_SourceInitialized({$handle=([Windows.Interop.WindowInteropHelper]::new($global:cd_dock)).Handle;[ClearDesktopDockLayer]::Configure($handle)})
-$global:cd_dock.Add_ContentRendered({$work=[Windows.SystemParameters]::WorkArea;$global:cd_dock.Left=$work.Left+($work.Width-$global:cd_dock.ActualWidth)/2;$global:cd_dock.Top=$work.Bottom-$global:cd_dock.ActualHeight-12})
+$global:cd_dock.Add_ContentRendered({$work=[Windows.SystemParameters]::WorkArea;$global:cd_dock.Left=$work.Left+($work.Width-$global:cd_dock.ActualWidth)/2;$global:cd_dock.Top=$work.Bottom-$global:cd_dock.ActualHeight-12;[ClearDesktopDockLayer]::Refresh()})
 $global:cd_launcher.Add_Deactivated({$global:cd_lastHidden=Get-Date;[ClearDesktopMotion]::HideLauncher($global:cd_launcher)})
 $global:cd_launcher.Add_PreviewKeyDown({if($_.Key -eq 'Escape'){[ClearDesktopMotion]::HideLauncher($global:cd_launcher);$_.Handled=$true}})
 (Find $global:cd_launcher 'Search').Add_TextChanged({$global:cd_category='全部';$global:cd_page=0;Render-Categories;Render-Apps})
